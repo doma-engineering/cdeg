@@ -1,0 +1,126 @@
+[package]
+name = "cdeg"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+ci = []
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "cdeg"
+path = "src/main.rs"
+
+[dependencies]
+# Async runtime
+tokio = { version = "*", features = ["full"] }
+
+# Error handling
+anyhow = "*"
+thiserror = "*"
+
+# Serialization
+serde = { version = "*", features = ["derive"] }
+serde_with = { version = "*", features = ["chrono_0_4"] }
+serde_json = "*"
+serde_yaml = "*"
+toml = "*"
+
+# Database
+sqlx = { version = "*", features = ["runtime-tokio", "sqlite", "uuid", "chrono", "json"] }
+
+# HTTP client
+reqwest = { version = "*", features = ["json"] }
+
+# GitHub API
+octocrab = "*"
+
+# Utilities
+uuid = { version = "*", features = ["v4", "serde"] }
+chrono = { version = "*", features = ["serde"] }
+async-trait = "*"
+futures = "*"
+
+# Web framework and middleware
+axum = { version = "*", features = ["macros", "multipart"] }
+axum-extra = { version = "*" }
+tower = "*"
+tower-http = { version = "*", features = ["fs", "cors"] }
+http = "*"
+specta = { git = "https://github.com/specta-rs/specta", features = ["chrono", "uuid", "url", "derive"] }
+specta-typescript = { git = "https://github.com/specta-rs/specta" }
+specta-util = { git = "https://github.com/specta-rs/specta", features = ["export"] }
+
+# Sessions
+axum-sessions = "*"
+async-session = "*"
+
+# OAuth
+oauth2 = "*"
+
+# Filesystem operations
+tokio-util = { version = "*", features = ["codec"] }
+walkdir = "*"
+
+# Logging
+tracing = "*"
+tracing-subscriber = { version = "*", features = ["env-filter"] }
+
+# Configuration
+config = "*"
+dotenv = "*"
+
+# Compression and file operations
+zip = "*"
+flate2 = "*"
+tempfile = "*"
+
+# Cryptography
+base64 = "*"
+bs58 = "*"
+hex = "*"
+blake3 = "*"
+ring = "*"
+jsonwebtoken = "*"
+sha2 = "*"
+roxmltree = "*"
+
+# CLI
+clap = { version = "*", features = ["derive"] }
+
+# Filesystem operations
+fs_extra = "*"
+subprocess = "*"
+uuid-readable-rs = "*"
+regex = "*"
+dirs = "*"
+glob = "*"
+
+# Utilities
+lazy_static = "*"
+bimap = "*"
+typenum = "*" # why?
+num-bigint = "*"
+num-traits = "*"
+
+# Testing
+fake = { version = "*", features = ['derive'] }
+
+[dev-dependencies]
+tokio-test = "*"
+pretty_assertions = "*"
+fake = { version = "*", features = ['derive'] }
+
+[workspace.lints.rust]
+unsafe_code = { level = "forbid", priority = -1 }
+missing_docs = { level = "warn", priority = -1 }
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+cargo = { level = "warn", priority = -1 }
+unwrap_used = { level = "warn", priority = -1 }
+panic = { level = "warn", priority = -1 }
+todo = { level = "warn", priority = -1 }
+panic_in_result_fn = { level = "warn", priority = -1 }
